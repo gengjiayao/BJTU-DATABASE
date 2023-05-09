@@ -1,0 +1,78 @@
+body {
+    background-color : #f2f2f2;
+    font-family      : Arial, sans-serif;
+}
+
+.login-container {
+    background-color : #fff;
+    border-radius    : 30px;
+    box-shadow       : 60px 80px 16px rgba(0, 0, 0, 0.2); /* 设置登录容器的阴影效果 */
+    margin           : 200px auto;
+    max-width        : 450px; /* 设置登录容器的最大宽度 */
+    padding          : 30px 50px; /* 设置登录容器的内边距 */
+}
+
+.links {
+    display       : flex; /* 将子元素转换为 flex 子项 */
+    margin-top    : 30px;
+    margin-bottom : 0;
+}
+
+.links a:last-child {
+    margin-left : auto; /* 将第二个链接移到容器的右侧 */
+}
+
+h1 {
+    text-align : center;
+    margin-top : 10px; /* 设置h1与容器上边界的距离为20像素 */
+}
+
+.form-group {
+    margin-bottom : 30px;
+}
+
+label {
+    display       : block; /* 将标签显示为块级元素，以便可以设置上下边距 */
+    font-size     : 18px; /* 设置标签字体大小为 16px */
+    font-weight   : bold;
+    margin-bottom : 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    /* password属性看不见 */
+    border        : 1px solid #ccc; /* 设置输入框的边框为灰色实线边框 */
+    border-radius : 10px;
+    box-sizing    : border-box;
+    font-size     : 16px;
+    padding       : 10px;
+    width         : 100%;
+}
+
+button[type="submit"] {
+    background-color : #4CAF50;
+    border           : none;
+    border-radius    : 20px;
+    color            : #fff;
+    cursor           : pointer; /* 设置提交按钮的鼠标样式为手型 */
+    display          : block; /* 将按钮设置为块级元素 */
+    margin           : 0 auto; /* 将左右外边距设置为 auto */
+    font-size        : 16px;
+    padding          : 10px;
+    width            : 100%;
+}
+
+button[type="submit"]:hover {
+    background-color : #3e8e41; /* 设置提交按钮鼠标悬停时的背景色为深绿色 */
+}
+
+a {
+    color           : #808080; /* 设置链接颜色 */
+    text-decoration : none; /* 去掉下划线 */
+    font-weight     : bold; /* 加粗字体 */
+}
+
+a:hover {
+    color           : #004C99; /* 设置链接鼠标悬停时的颜色 */
+    text-decoration : underline; /* 添加下划线 */
+}
