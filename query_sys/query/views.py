@@ -28,3 +28,11 @@ def Login_view(request):
         else:
             context = {'msg': '用户名或密码错误'}
             return render(request, 'login.html', context)
+
+
+def Register_view(request):
+    return render(request, 'register.html')
+
+
+def Forget_view(request):
+    return render(request, 'forgot.html')
