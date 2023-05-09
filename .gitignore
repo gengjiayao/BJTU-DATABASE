@@ -1,4 +1,4 @@
 **/.idea
-query_sys/db.sqlite3
-query_sys/src/__pycache__/
+**/db.sqlite3
+**/__pycache__
 **/.DS_Store

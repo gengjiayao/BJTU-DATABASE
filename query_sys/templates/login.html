@@ -8,7 +8,8 @@
 <body>
 <div class="login-container">
     <h1>余票查询系统登陆</h1>
-    <form>
+    <form action="/login/index" method="post">
+        {% csrf_token %}
         <div class="form-group">
             <label for="username">账号</label>
             <input type="text" id="username" name="username" required>
@@ -19,6 +20,11 @@
         </div>
         <button type="submit">登陆</button>
     </form>
+    {% if msg %}
+        <div id="login-failed">
+            {{ msg }}
+        </div>
+    {% endif %}
     <div class="links">
         <a href="#">忘记密码</a>
         <a href="#">注册账户</a>

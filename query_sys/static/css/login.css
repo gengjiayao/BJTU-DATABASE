@@ -33,9 +33,9 @@ h1 {
 
 label {
     display       : block; /* 将标签显示为块级元素，以便可以设置上下边距 */
-    font-size     : 18px; /* 设置标签字体大小为 16px */
+    font-size     : 16px; /* 设置标签字体大小为 16px */
     font-weight   : bold;
-    margin-bottom : 5px;
+    margin-bottom : 0;
 }
 
 input[type="text"],
@@ -75,4 +75,9 @@ a {
 a:hover {
     color           : #004C99; /* 设置链接鼠标悬停时的颜色 */
     text-decoration : underline; /* 添加下划线 */
+}
+
+#login-failed {
+    color: red;
+    margin-top: 20px;
 }
