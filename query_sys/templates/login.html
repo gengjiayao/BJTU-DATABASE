@@ -8,7 +8,7 @@
 <body>
 <div class="login-container">
     <h1>余票查询系统登陆</h1>
-    <form action="/login/index" method="post">
+    <form action="/login/" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label for="username">账号</label>
@@ -26,8 +26,8 @@
         </div>
     {% endif %}
     <div class="links">
-        <a href="/login/forgot">忘记密码</a>
-        <a href="/login/register">注册账户</a>
+        <a href="/forgot/">忘记密码</a>
+        <a href="/register/">注册账户</a>
     </div>
 </div>
 </body>

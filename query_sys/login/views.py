@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.db import connection
 import hashlib
@@ -7,6 +7,14 @@ import hashlib
 # Create your views here.
 def toLogin_view(request):
     return render(request, 'login.html')
+
+
+def Register_view(request):
+    return render(request, 'register.html')
+
+
+def Forget_view(request):
+    return render(request, 'forgot.html')
 
 
 def Login_view(request):
@@ -24,15 +32,7 @@ def Login_view(request):
     else:
         db_password = row[0]
         if db_password == hash_p:
-            return HttpResponse("登陆成功")
+            return redirect(reverse('index'))
         else:
             context = {'msg': '用户名或密码错误'}
             return render(request, 'login.html', context)
-
-
-def Register_view(request):
-    return render(request, 'register.html')
-
-
-def Forget_view(request):
-    return render(request, 'forgot.html')
