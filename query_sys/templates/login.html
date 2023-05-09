@@ -12,7 +12,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="username">账号</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username" required value="{{ request.POST.username }}">
         </div>
         <div class="form-group">
             <label for="password">密码</label>
@@ -26,7 +26,7 @@
         </div>
     {% endif %}
     <div class="links">
-        <a href="#">忘记密码</a>
+        <a href="/forgot_password.html">忘记密码</a>
         <a href="#">注册账户</a>
     </div>
 </div>
