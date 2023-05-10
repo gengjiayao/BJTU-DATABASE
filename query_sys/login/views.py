@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import connection
 import hashlib
+import json
 
 
 # Create your views here.
@@ -9,8 +10,32 @@ def toLogin_view(request):
     return render(request, 'login.html')
 
 
-def Register_view(request):
+def toRegister_view(request):
     return render(request, 'register.html')
+
+
+Code = None
+
+
+def Get_Code(request):
+    global Code
+    if request.method == 'POST':
+        json_data = json.loads(request.body)
+        Code = json_data.get('Code', '123')
+        print("6位验证码：" + Code)
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False, "message": "Only POST requests are allowed."})
+
+
+def Register_view(request):
+    Reg_password = request.POST.get('password', '')
+    Reg_confirm_password = request.POST.get('confirm_password', '')
+    global Code
+    print(Code)
+    if Reg_password != Reg_confirm_password:
+        context = {'reg_msg': '前后密码不一致'}
+        return render(request, 'register.html', context)
 
 
 def Forget_view(request):

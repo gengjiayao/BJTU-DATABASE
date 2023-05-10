@@ -78,6 +78,6 @@ a:hover {
 }
 
 #login-failed {
-    color: red;
-    margin-top: 20px;
+    color      : red;
+    margin-top : 20px;
 }

@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>余票查询用户注册</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/register.css?v=1">
 </head>
 <body>
 <div class="register-container">
     <h1>余票查询系统注册</h1>
     <form action="/login/register" method="post">
         {% csrf_token %}
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="id-number">身份证号</label>
+            <input type="text" id="id-number" name="id-number" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">手机号码</label>
+            <input type="tel" id="phone" name="phone" required>
+            <button type="button" id="send-code-btn" class="button">发送验证码</button>
+        </div>
+        <div class="form-group">
+            <label for="phone-code">验证码</label>
+            <input type="text" id="phone-code" name="phone-code" required>
+        </div>
         <div class="form-group">
             <label for="username">账号</label>
             <input type="text" id="username" name="username" required>
@@ -24,14 +41,17 @@
         </div>
         <button type="submit">注册</button>
     </form>
-    {% if msg %}
+    {% if reg_msg %}
         <div id="register-failed">
-            {{ msg }}
+            {{ reg_msg }}
         </div>
     {% endif %}
     <div class="links">
         <a href="/">返回登陆</a>
     </div>
 </div>
+
+<script src="/static/js/SendCode.js?v=1"></script>
+
 </body>
 </html>
