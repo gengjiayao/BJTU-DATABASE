@@ -8,7 +8,7 @@
 <body>
 <div class="register-container">
     <h1>余票查询系统注册</h1>
-    <form action="/login/register" method="post">
+    <form action="/login/register/" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">姓名</label>
@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="id-number">身份证号</label>
-            <input type="text" id="id-number" name="id-number" required>
+            <input type="text" id="id-number" name="id_number" required>
         </div>
         <div class="form-group">
             <label for="phone">手机号码</label>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="phone-code">验证码</label>
-            <input type="text" id="phone-code" name="phone-code" required>
+            <input type="text" id="phone-code" name="phone_code" required>
         </div>
         <div class="form-group">
             <label for="username">账号</label>

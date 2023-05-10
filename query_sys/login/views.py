@@ -31,11 +31,43 @@ def Get_Code(request):
 def Register_view(request):
     Reg_password = request.POST.get('password', '')
     Reg_confirm_password = request.POST.get('confirm_password', '')
+    Reg_code = request.POST.get('phone_code', '')
+    Reg_phone = request.POST.get('phone', '')
+    Reg_username = request.POST.get('username', '')
+    Reg_name = request.POST.get('name', '')
+    Reg_id_number = request.POST.get('id_number', '')
     global Code
-    print(Code)
+
+    print(Reg_password, Reg_confirm_password, Reg_code, Reg_phone, Reg_username, Reg_name, Reg_id_number)
     if Reg_password != Reg_confirm_password:
         context = {'reg_msg': '前后密码不一致'}
         return render(request, 'register.html', context)
+
+    cursor = connection.cursor()
+    cursor.execute("select id_number from user where id_number ='{}';".format(Reg_id_number))
+    j_id_number = cursor.fetchone()
+    print(j_id_number is not None, "hahaha")
+
+    if j_id_number is not None:
+        context = {'reg_msg': '此人已经注册'}
+        return render(request, 'register.html', context)
+
+    cursor.execute("select telephone from user where telephone ='{}';".format(Reg_phone))
+    j_phone = cursor.fetchone()
+    if j_phone is not None:
+        context = {'reg_msg': '此电话号已经注册'}
+        return render(request, 'register.html', context)
+
+    cursor.execute("select user_account from user where user_account ='{}';".format(Reg_username))
+    j_username = cursor.fetchone()
+    if j_username is not None:
+        context = {'reg_msg': '此账号已经注册'}
+        return render(request, 'register.html', context)
+
+    cursor.execute("select COUNT(*) from user;")
+    user_cnt = cursor.fetchone()
+    cursor.execute("insert into user values('{}', '{}', '{}', '{}', '{}', '{}');".format(int(user_cnt[0]) + 1, Reg_username, hashlib.sha256(Reg_password.encode()).hexdigest(), Reg_phone, Reg_name, Reg_id_number))
+    return render(request, 'register.html')
 
 
 def Forget_view(request):
