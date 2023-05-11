@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>账户注销</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/logout.css?v=1">
+</head>
+<body>
+<div class="logout-container">
+    <h1>账户注销</h1>
+    <form action="/login/logout/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" name="phone" required>
+            <button type="button" id="send-code-btn" class="button">发送验证码</button>
+        </div>
+        <div class="form-group">
+            <label for="phone-code">验证码</label>
+            <input type="text" id="phone-code" name="phone-code" required>
+        </div>
+        <button type="submit">注销</button>
+    </form>
+    {% if msg %}
+        <div id="logout-failed">
+            {{ msg }}
+        </div>
+    {% endif %}
+    {% if msg_suss %}
+        <div id="logout-suss">
+            {{ msg_suss }}
+        </div>
+    {% endif %}
+    <div class="links">
+        <a href="/">返回登陆</a>
+    </div>
+</div>
+
+<script src="/static/js/SendCode.js?v=1"></script>
+
+</body>
+</html>

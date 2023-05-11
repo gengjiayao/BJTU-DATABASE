@@ -3,24 +3,15 @@ body {
     font-family      : Arial, sans-serif;
 }
 
-.forgot-container {
+.form-container {
     background-color : #fff;
     border-radius    : 30px;
     box-shadow       : 60px 80px 16px rgba(0, 0, 0, 0.2);
-    margin           : 100px auto 30px;
-    max-width        : 450px;
     padding          : 30px 50px;
+    max-width        : 450px;
+    margin           : 50px auto 50px;
 }
 
-.links {
-    display       : flex;
-    margin-top    : 30px;
-    margin-bottom : 0;
-}
-
-.links a:last-child {
-    margin-left : auto; /* 将第二个链接移到容器的右侧 */
-}
 h1 {
     text-align : center;
     margin-top : 10px;
@@ -37,8 +28,7 @@ label {
     margin-bottom : 0;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"] {
     border        : 1px solid #ccc;
     border-radius : 10px;
     box-sizing    : border-box;
@@ -47,14 +37,13 @@ input[type="password"] {
     width         : 100%;
 }
 
-input[type='tel'] {
+input[type="date"] {
     border        : 1px solid #ccc;
     border-radius : 10px;
     box-sizing    : border-box;
     font-size     : 16px;
     padding       : 10px;
-    width         : 350px;
-    height        : 40px;
+    width         : 100%;
 }
 
 button[type="submit"] {
@@ -72,38 +61,4 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color : #3e8e41;
-}
-
-button[type="button"] {
-    background-color : #4CAF50;
-    border           : none;
-    border-radius    : 10px;
-    color            : #fff;
-    cursor           : pointer;
-    padding          : 10px;
-}
-
-button[type="button"]:hover {
-    background-color : #3e8e41;
-}
-
-a {
-    color           : #808080;
-    text-decoration : none;
-    font-weight     : bold;
-}
-
-a:hover {
-    color           : #004C99;
-    text-decoration : underline;
-}
-
-#failed {
-    color      : red;
-    margin-top : 20px;
-}
-
-#suss {
-    color : #4CAF50;
-    margin-top : 20px;
 }

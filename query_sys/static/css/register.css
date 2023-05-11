@@ -7,7 +7,7 @@ body {
     background-color : #fff;
     border-radius    : 30px;
     box-shadow       : 60px 80px 16px rgba(0, 0, 0, 0.2);
-    margin           : 40px auto 30px;
+    margin           : 100px auto 30px;
     max-width        : 450px;
     padding          : 30px 50px;
 }
@@ -97,5 +97,10 @@ a:hover {
 
 #register-failed {
     color      : red;
+    margin-top : 20px;
+}
+
+#register-suss {
+    color      : #4CAF50;
     margin-top : 20px;
 }

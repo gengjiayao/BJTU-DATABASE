@@ -2,9 +2,50 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>测试1</title>
+    <title>忘记密码</title>
+    <link rel="stylesheet" href="/static/css/forgot.css?v=1">
 </head>
 <body>
-这是忘记密码的登陆界面
+<div class="forgot-container">
+    <form action="/login/forgot/" method="post">
+        <h1>忘记密码</h1>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" name="phone" required>
+            <button type="button" id="send-code-btn" class="button">发送验证码</button>
+        </div>
+        <div class="form-group">
+            <label for="phone-code">验证码</label>
+            <input type="text" id="phone-code" name="phone-code" required>
+        </div>
+        <div class="form-group">
+            <label for="password">新密码</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">确认密码</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <button type="submit">提交</button>
+    </form>
+    {% if fog_msg %}
+        <div id="failed">
+            {{ fog_msg }}
+        </div>
+    {% endif %}
+    {% if fog_msg_suss %}
+        <div id="suss">
+            {{ fog_msg_suss }}
+        </div>
+    {% endif %}
+    <div class="links">
+        <a href="/logout/" id="logout">账号注销(只需手机验证码)</a>
+        <a href="/">返回登陆</a>
+    </div>
+</div>
+
+<script src="/static/js/SendCode.js?v=1"></script>
+
 </body>
 </html>

@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="id-number">身份证号</label>
-            <input type="text" id="id-number" name="id_number" required>
+            <input type="text" id="id-number" name="id-number" required>
         </div>
         <div class="form-group">
             <label for="phone">手机号码</label>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="phone-code">验证码</label>
-            <input type="text" id="phone-code" name="phone_code" required>
+            <input type="text" id="phone-code" name="phone-code" required>
         </div>
         <div class="form-group">
             <label for="username">账号</label>
@@ -37,13 +37,18 @@
         </div>
         <div class="form-group">
             <label for="confirm-password">确认密码</label>
-            <input type="password" id="confirm-password" name="confirm_password" required>
+            <input type="password" id="confirm-password" name="confirm-password" required>
         </div>
         <button type="submit">注册</button>
     </form>
     {% if reg_msg %}
         <div id="register-failed">
             {{ reg_msg }}
+        </div>
+    {% endif %}
+    {% if reg_msg_suss %}
+        <div id="register-suss">
+            {{ reg_msg_suss }}
         </div>
     {% endif %}
     <div class="links">
