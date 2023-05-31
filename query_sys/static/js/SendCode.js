@@ -11,7 +11,7 @@ function getCookie(name) {
 function generateCode() {
     const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let code = '';
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
         code += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return code;

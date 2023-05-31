@@ -21,6 +21,7 @@ body {
 .links a:last-child {
     margin-left : auto; /* 将第二个链接移到容器的右侧 */
 }
+
 h1 {
     text-align : center;
     margin-top : 10px;
@@ -104,6 +105,6 @@ a:hover {
 }
 
 #suss {
-    color : #4CAF50;
+    color      : #4CAF50;
     margin-top : 20px;
 }

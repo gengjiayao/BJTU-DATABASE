@@ -69,9 +69,8 @@ def Register_view(request):
         context = {'reg_msg': '此账号已经注册'}
         return render(request, 'register.html', context)
 
-    cursor.execute("select COUNT(*) from user;")
-    user_cnt = cursor.fetchone()
-    cursor.execute("insert into user values('{}', '{}', '{}', '{}', '{}', '{}');".format(int(user_cnt[0]) + 1, Reg_username, hashlib.sha256(Reg_password.encode()).hexdigest(), Reg_phone, Reg_name, Reg_id_number))
+    cursor.execute("call new_user(%s, %s, %s, %s, %s)", (Reg_username, hashlib.sha256(Reg_password.encode()).hexdigest(), Reg_phone, Reg_name, Reg_id_number))
+    # cursor.execute("insert into user values('{}', '{}', '{}', '{}', '{}', '{}');".format(int(user_cnt[0]) + 1, Reg_username, hashlib.sha256(Reg_password.encode()).hexdigest(), Reg_phone, Reg_name, Reg_id_number))
     context = {'reg_msg_suss': '注册成功'}
     return render(request, 'register.html', context)
 
@@ -95,7 +94,8 @@ def Forget_view(request):
     j_phone = cursor.fetchone()
     if j_phone is not None:
         context = {'fog_msg_suss': '修改密码成功'}
-        cursor.execute("update user set user_password = '{}' where telephone = '{}';".format(hashlib.sha256(Fog_password.encode()).hexdigest(), Fog_phone))
+        cursor.execute("call update_passwd(%s, %s)", (hashlib.sha256(Fog_password.encode()).hexdigest(), Fog_phone))
+        # cursor.execute("update user set user_password = '{}' where telephone = '{}';".format(hashlib.sha256(Fog_password.encode()).hexdigest(), Fog_phone))
         return render(request, 'forgot.html', context)
     else:
         context = {'fog_msg': '此手机号不存在'}
@@ -118,7 +118,8 @@ def Logout_view(request):
     cursor.execute("select telephone from user where telephone ='{}';".format(Log_phone))
     j_phone = cursor.fetchone()
     if j_phone is not None:
-        cursor.execute("delete from user where telephone = '{}';".format(Log_phone))
+        cursor.execute("call delete_user_from_telephone(%s)", Log_phone)
+        # cursor.execute("delete from user where telephone = '{}';".format(Log_phone))
         context = {'msg_suss': '注销账户成功'}
         return render(request, 'logout.html', context)
     else:
