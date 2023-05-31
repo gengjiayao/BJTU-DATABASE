@@ -62,3 +62,43 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color : #3e8e41;
 }
+
+button[disabled] {
+    background-color : #808080;
+}
+
+button[disabled]:hover {
+    background-color : #808080;
+}
+
+#welcome {
+    color       : purple;
+    font-weight : bold;
+}
+
+#username {
+    color      : purple;
+    font-style : italic;
+}
+
+#please_login a {
+  color: #808080;
+}
+
+#welcome a {
+  color: #808080;
+}
+
+#please_login {
+    color      : red;
+    font-style : italic;
+}
+
+.flex {
+    display         : flex;
+    justify-content : space-between;
+}
+
+.flex span {
+    width : 45%;
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>火车票余票查询</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css?v=1">
 </head>
 <body>
 <div class="train-container">
@@ -22,11 +22,20 @@
             <label for="date">日期</label>
             <input type="date" id="date" name="date" class="form-control" required>
         </div>
-        <button type="submit">查询</button>
+        <button type="submit" {% if not request.session.username %} disabled {% endif %}>查询</button>
     </form>
+    {% if request.session.username %}
+        <p id="welcome" class="flex">
+            <span>Welcome, <span id="username">{{ request.session.username }}</span></span>
+            <a href="{% url 'exit' %}">退出</a>
+        </p>
+    {% else %}
+        <p id="please_login" class="flex">请先登录
+            <a href="{% url 'login' %}">登录</a>
+        </p>
+    {% endif %}
 </div>
 
 <script src="/static/js/DataMin.js?v=1"></script>
-
 </body>
 </html>

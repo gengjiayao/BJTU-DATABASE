@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
@@ -142,7 +143,13 @@ def Login_view(request):
     else:
         db_password = row[0]
         if db_password == hash_p:
+            request.session['username'] = u
             return redirect(reverse('index'))
         else:
             context = {'msg': '用户名或密码错误'}
             return render(request, 'login.html', context)
+
+
+def exit_view(request):
+    request.session.delete(request.session.session_key)
+    return redirect('/')
