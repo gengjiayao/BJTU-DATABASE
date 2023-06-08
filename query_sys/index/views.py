@@ -1,3 +1,5 @@
+import time
+import threading
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
@@ -7,13 +9,25 @@ import hashlib
 import json
 import pytz
 
+lock = threading.Lock()
+
+
+def atomic(func):
+    def wrap(*args, **kwargs):
+        with lock:
+            return func(*args, **kwargs)
+    return wrap
+
 
 # Create your views here.
 def Index_view(request):
     return render(request, 'index.html')
 
 
+@atomic
 def Result_view(request):
+    time.sleep(1)
+    current_user = request.POST.get('current_user', '')
     from_city = request.POST.get('start', '')
     to_city = request.POST.get('end', '')
     selected_date = request.POST.get('date')
@@ -24,6 +38,11 @@ def Result_view(request):
     beijing_selected_date = utc_selected_date.astimezone(beijing_tz)  # 将UTC时间转换为北京时间
     beijing_now = datetime.now(beijing_tz)  # 获取当前北京时间
     date_diff = (beijing_selected_date - beijing_now).days
+
+    sql = "insert into query_info(user_account, query_start, query_end) values(%s, %s, %s) "
+    params = (current_user, from_city, to_city)
+    with connection.cursor() as cursor:
+        cursor.execute(sql, params)
 
     sql = "call get_transfer_data(%s, %s)"
     params = (from_city, to_city)
@@ -73,5 +92,4 @@ def Result_view(request):
             arr_total2.append(total2)
     for i in range(len(trains)):
         trains[i]['total2'] = arr_total2[i]
-
     return render(request, 'result.html', {'trains': trains})

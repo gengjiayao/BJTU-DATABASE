@@ -13,6 +13,7 @@
         <div class="form-group">
             <label for="start">起点</label>
             <input type="text" id="start" name="start" required>
+            <input type="hidden" name="current_user" value="{{ request.session.username }}">
         </div>
         <div class="form-group">
             <label for="end">终点</label>

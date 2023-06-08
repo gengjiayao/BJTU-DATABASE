@@ -15,6 +15,7 @@
         <div class="form-group">
             <label for="start">起点</label>
             <input type="text" id="start" name="start" required value="{{ request.POST.start }}">
+            <input type="hidden" name="current_user" value="{{ request.session.username }}">
         </div>
         <div class="form-group">
             <label for="end">终点</label>
@@ -26,7 +27,7 @@
         </div>
         <button type="submit"{% if not request.session.username %} disabled {% endif %}>查询</button>
     </form>
-        {% if request.session.username %}
+    {% if request.session.username %}
         <p id="welcome" class="flex">
             <span>Welcome, <span id="username">{{ request.session.username }}</span></span>
             <a href="{% url 'exit' %}">退出</a>
