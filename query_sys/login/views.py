@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db import connection
 import hashlib
 import json
+import sms.QuanmSmsSDK as SMS_send
 
 
 # Create your views here.
@@ -27,7 +28,11 @@ def Get_Code(request):
     if request.method == 'POST':
         json_data = json.loads(request.body)
         Code = json_data.get('Code', '123')
-        print("6位验证码：" + Code)
+        Phone = json_data.get('PhoneNumber', '111')
+        print("手机号：" + Phone + "\t6位验证码：" + Code)
+        sms_sdk = SMS_send.SDK()
+        results, info = sms_sdk.send(Phone, sms_sdk.def_model_id, {'code': Code})
+        print(info)
         return JsonResponse({"success": True})
     else:
         return JsonResponse({"success": False, "message": "Only POST requests are allowed."})

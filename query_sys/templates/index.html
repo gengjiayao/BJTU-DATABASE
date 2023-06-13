@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>火车票余票查询</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css?v=<current-timestamp>">
+    <script type="text/javascript">
+        document.write("<link rel='stylesheet' type='text/css' href='/static/css/index.css?v=" + new Date().getTime() + "'>");
+    </script>
 </head>
 <body>
 <div class="train-container">
@@ -37,6 +39,9 @@
     {% endif %}
 </div>
 
-<script src="/static/js/DataMin.js?v=<current-timestamp>"></script>
+<script type="text/javascript">
+    document.write('<script src="/static/js/DataMin.js?v=' + Math.random() + '"><\/script>');
+</script>
+
 </body>
 </html>

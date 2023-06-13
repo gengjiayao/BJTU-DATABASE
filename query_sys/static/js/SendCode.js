@@ -38,11 +38,13 @@ btn.addEventListener('click', function () {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("X-CSRFToken", csrfToken); // 将 CSRF 令牌添加到请求头中
     let Code = generateCode();
+    let PhoneNumber = _phone.value;
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
                 console.log("6位验证码：" + Code);
+                console.log("手机号：" + PhoneNumber);
             } else {
                 console.error(xhr.statusText);
             }
@@ -50,6 +52,7 @@ btn.addEventListener('click', function () {
     }
     let data = {
         Code: Code,
+        PhoneNumber: PhoneNumber,
     };
     xhr.send(JSON.stringify(data));
 
