@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <script type="text/javascript">
+        document.write("<link rel='stylesheet' type='text/css' href='/static/css/user.css?v=" + new Date().getTime() + "'>");
+    </script>
+</head>
+<body>
+
+<div class="card">
+    <h1>你的信息</h1>
+    <div class="avatar">
+        <img src="/static/img/1.jpeg">
+    </div>
+    <hr>
+    <div class="container">
+        <label class="label-1">账号:</label>
+        <div class="info">{{ username }}</div>
+    </div>
+    <div class="container">
+        <label class="label-1">身份证号:</label>
+        <div class="info">{{ id_number }}</div>
+    </div>
+    <div class="container">
+        <label class="label-1">手机号:</label>
+        <div class="info">{{ phone }}</div>
+    </div>
+    <hr>
+    <br/>
+    <form action="/index/user/ch_pwd/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="label-2" for="pre_password">原密码</label>
+            <input type="password" id="pre_password" name="pre_password" required>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label class="label-2" for="password">新密码</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label class="label-2" for="confirm_password">确认密码</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <br/>
+        <button type="submit">修改密码</button>
+    </form>
+    {% if user_msg %}
+        <div id="failed">
+            {{ user_msg }}
+        </div>
+    {% endif %}
+    {% if user_msg_suss %}
+        <div id="suss">
+            {{ user_msg_suss }}
+        </div>
+    {% endif %}
+    <br/>
+    <div class="links">
+        <a href="/index">返回</a>
+    </div>
+</div>
+
+</body>
+</html>

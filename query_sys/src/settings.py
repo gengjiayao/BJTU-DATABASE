@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-vnod%p$6g3(q&)*@vma$j%cffk(e!c6j%%wh*18wh4g2mgg^n9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.10.26", "127.0.0.1"]
+ALLOWED_HOSTS = ["192.168.10.20", "127.0.0.1"]
 
 # Application definition
 

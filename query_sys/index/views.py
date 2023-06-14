@@ -16,6 +16,7 @@ def atomic(func):
     def wrap(*args, **kwargs):
         with lock:
             return func(*args, **kwargs)
+
     return wrap
 
 
@@ -24,9 +25,77 @@ def Index_view(request):
     return render(request, 'index.html')
 
 
+def User_ch_pwd(request):
+    pre_password = request.POST.get('pre_password', '')
+    password = request.POST.get('password', '')
+    confirm_password = request.POST.get('confirm_password', '')
+
+    u = request.session.get('username')
+    print(pre_password, password, confirm_password)
+
+    hash_p = hashlib.sha256(pre_password.encode()).hexdigest()
+
+    cursor = connection.cursor()
+    cursor.execute("select user_password from user where user_account ='{}';".format(u))
+    row = cursor.fetchone()
+    db_password = row[0]
+
+    cursor.execute("select * from user_info_view where user_account = %s;", u)
+    results = cursor.fetchall()
+    username, id_number, phone = results[0][0], results[0][1], results[0][2]
+
+    if db_password == hash_p:
+        if password != confirm_password:
+            context = {
+                'user_msg': '前后密码不一致',
+                'username': username,
+                'id_number': id_number,
+                'phone': phone,
+            }
+            return render(request, 'user.html', context)
+        else:
+            hash_p = hashlib.sha256(password.encode()).hexdigest()
+            cursor.execute("update user set user_password = '{}' where user_account = '{}';".format(hash_p, u))
+            context = {
+                'user_msg_suss': '密码修改成功',
+                'username': username,
+                'id_number': id_number,
+                'phone': phone,
+            }
+            return render(request, 'user.html', context)
+    else:
+        context = {
+            'user_msg': '原密码错误',
+            'username': username,
+            'id_number': id_number,
+            'phone': phone,
+        }
+        return render(request, 'user.html', context)
+
+
+def User_info(request):
+    u = request.session.get('username')
+    if u:
+        with connection.cursor() as cursor:
+            cursor.execute("select * from user_info_view where user_account = %s;", u)
+            results = cursor.fetchall()
+            username, id_number, phone = results[0][0], results[0][1], results[0][2]
+            context = {
+                'username': username,
+                'id_number': id_number,
+                'phone': phone
+            }
+        return render(request, 'user.html', context)
+    else:
+        return redirect('/index')
+
+
 @atomic
 def Result_view(request):
-    time.sleep(1)
+    # time.sleep(1)
+    if not request.session.get('username'):
+        return redirect('/index')
+
     current_user = request.POST.get('current_user', '')
     from_city = request.POST.get('start', '')
     to_city = request.POST.get('end', '')

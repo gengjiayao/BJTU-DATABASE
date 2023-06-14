@@ -29,12 +29,12 @@
     </form>
     {% if request.session.username %}
         <p id="welcome" class="flex">
-            <span>Welcome, <span id="username">{{ request.session.username }}</span></span>
-            <a href="{% url 'exit' %}">退出</a>
+            <span>Welcome, <a class="a-1" href="user/"><span id="username">{{ request.session.username }}</span></a></span>
+            <a class="a-2" href="{% url 'exit' %}">退出</a>
         </p>
     {% else %}
         <p id="please_login" class="flex">请先登录
-            <a href="{% url 'login' %}">登录</a>
+            <a class="a-2" href="{% url 'start' %}">登录</a>
         </p>
     {% endif %}
 </div>

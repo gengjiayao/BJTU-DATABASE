@@ -81,13 +81,6 @@ button[disabled]:hover {
     font-style : italic;
 }
 
-#please_login a {
-  color: #808080;
-}
-
-#welcome a {
-  color: #808080;
-}
 
 #please_login {
     color      : red;
@@ -101,4 +94,20 @@ button[disabled]:hover {
 
 .flex span {
     width : 45%;
+}
+
+.a-1 {
+    color       : #808080;
+    font-weight : bold;
+}
+
+.a-2 {
+    color           : #808080;
+    text-decoration : none;
+    font-weight     : bold;
+}
+
+a:hover {
+    color           : #004C99;
+    text-decoration : underline;
 }
