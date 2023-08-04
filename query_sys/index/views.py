@@ -92,7 +92,7 @@ def User_info(request):
 
 @atomic
 def Result_view(request):
-    # time.sleep(1)
+    time.sleep(1)
     if not request.session.get('username'):
         return redirect('/index')
 
